@@ -57,13 +57,13 @@ export class RegisterFormModalComponent implements OnInit {
             return;
         }
 
-        let mimeType = files[0].type;
+        const mimeType = files[0].type;
         if (mimeType.match(/image\/*/) == null) {
             this.message = 'Only images are supported.';
             return;
         }
 
-        let reader = new FileReader();
+        const reader = new FileReader();
         this.imagePath = files;
         reader.readAsDataURL(files[0]);
         reader.onload = (e) => {

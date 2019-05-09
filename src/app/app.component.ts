@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie-service';
 
-import { RegisterFormModalComponent } from './register-form-modal/register-form-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +9,15 @@ import { RegisterFormModalComponent } from './register-form-modal/register-form-
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Joole-FE';
-  constructor(private modalService: NgbModal) {
-  }
+    constructor(
+        private cookieService: CookieService) {
+    }
 
-  openFormModal() {
-    const modalRef = this.modalService.open(RegisterFormModalComponent);
-
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
+    IsLogin() {
+        if (this.cookieService.get('Test')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -4,6 +4,7 @@ import { SubCategoryService } from './../service/sub-category/sub-category.servi
 import { CategoryService } from './../service/category/category.service';
 import { UserService } from './../service/user/user.service';
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
 
@@ -16,13 +17,16 @@ import { CookieService } from 'ngx-cookie-service';
 export class SearchBarComponent implements OnInit {
     categories: Category[];
     subCategories: SubCategory[];
-    selectedCategoryId;
-    selectedSubCategoryId;
+    selectedCategoryId = '-1';
+    selectedSubCategoryId = '-1';
+
+    isDisable = true;
 
     constructor(
         private userService: UserService,
         private categoryService: CategoryService,
         private subCategoryService: SubCategoryService,
+        private router: Router
         ) { }
 
     ngOnInit() {
@@ -52,9 +56,18 @@ export class SearchBarComponent implements OnInit {
 
     onSearch() {
         console.log(this.selectedCategoryId, this.selectedSubCategoryId);
+        // this.router.navigate(['/main', this.selectedCategoryId, this.selectedSubCategoryId]);
     }
 
     onLogOut() {
         this.userService.logOut();
+    }
+
+    isDisableSearch() {
+        if (this.selectedCategoryId !== '-1' && this.selectedSubCategoryId !== '-1') {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

@@ -3,7 +3,6 @@ import { UserService } from './../service/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CookieService } from 'ngx-cookie-service';
 
 import { RegisterFormModalComponent } from './register-form-modal/register-form-modal.component';
 

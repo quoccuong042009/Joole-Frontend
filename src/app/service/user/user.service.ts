@@ -1,7 +1,7 @@
 import { AuthService } from './auth.service';
 import { TOKEN_NAME, USER_URL } from './../../app.constant';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';

@@ -1,15 +1,16 @@
 <div class="input-group mb-3">
-  <select class="custom-select temp" id="inputGroupSelect01">
-    <option selected>Category</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-  </select>
-  <select class="custom-select" id="inputGroupSelect02">
-    <option selected>Choose...</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-  </select>
-  <button type="submit" class="btn btn-primary" (click)="onSearch()">Search</button>
+    <select class="custom-select temp" (change)="onCategoryChange($event.target.value)">
+        <option selected>Categories</option>
+        <option *ngFor = "let category of categories" [value] = "category.Id">
+            {{ category.Name }}
+        </option>
+    </select>
+    <select class="custom-select" (change)="onSubCategoryChange($event.target.value)">
+        <option selected>SubCategories</option>
+        <option *ngFor = "let subcategory of subCategories" [value] = "subcategory.Id">
+            {{ subcategory.Name }}
+        </option>
+    </select>
+    <button type="submit" class="btn btn-primary" (click)="onSearch()">Search</button>
 </div>
+<button type="submit" class="btn btn-warning" (click)="onLogOut()">Log out</button>

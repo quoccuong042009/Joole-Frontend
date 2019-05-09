@@ -47,11 +47,9 @@ export class LoginComponent implements OnInit {
     }
 
     onLogin() {
-        console.log('in login click');
         this.invalidEmail = false;
         this.invalidPassword = false;
         this.wrongEmailOrPassword = false;
-        console.log(this.loginForm);
 
         if (!this.loginForm.valid) {
             if (!this.loginForm.get('username').valid) {

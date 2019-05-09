@@ -1,6 +1,8 @@
+import { UserService } from './../service/user/user.service';
 import { Component, OnInit } from '@angular/core';
 
 import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
     selector: 'app-search-bar',
@@ -9,13 +11,15 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class SearchBarComponent implements OnInit {
 
-    constructor( private cookieService: CookieService) { }
+    constructor(
+        private cookieService: CookieService,
+        private userService: UserService
+        ) { }
 
     ngOnInit() {
     }
 
-    OnSearch() {
-        this.cookieService.delete('Test');
+    onSearch() {
+        this.userService.logOut();
     }
-
 }

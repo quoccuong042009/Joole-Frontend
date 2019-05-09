@@ -1,10 +1,19 @@
-<form >
+<form [formGroup] = "loginForm" (ngSubmit) = "onLogin()">
     <div class="form-group">
-      <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Username">
+        <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Username" formControlName="username">
+        <span style="color:red" *ngIf = "invalidEmail">
+            Invalid username. Please try again.
+        </span>
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" id="password" placeholder="Password">
+        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+        <span style="color:red" *ngIf = "invalidPassword">
+            Password must be at least 8 characters. Please try again.
+        </span>
+        <span style="color:red" *ngIf = "wrongEmailOrPassword">
+            Incorrect email or password. Please try again.
+        </span>
     </div>
-    <button type="submit" class="btn btn-success" (click)="OnLogin()">Log In</button>
+    <button type="submit" class="btn btn-success">Log In</button>
     <button class="btn btn-default" (click)="openFormModal()">Register</button>
 </form>

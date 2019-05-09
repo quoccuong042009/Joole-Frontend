@@ -62,8 +62,12 @@
                 Invalid image path.
             </span><br />
         </div>
+        <span style="color:red" *ngIf = "existedUsername">
+                Your username is already existed. 
+        </span><br />
     </div>
     <div class="modal-footer">
+        
         <button type="submit" class="btn btn-primary">Sign Up</button>
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
     </div>

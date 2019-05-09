@@ -1,3 +1,4 @@
+import { UserService } from './service/user/user.service';
 import { Component } from '@angular/core';
 
 import { CookieService } from 'ngx-cookie-service';
@@ -10,14 +11,11 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AppComponent {
     constructor(
-        private cookieService: CookieService) {
+        private cookieService: CookieService,
+        private userService: UserService) {
     }
 
-    IsLogin() {
-        if (this.cookieService.get('Test')) {
-            return true;
-        } else {
-            return false;
-        }
+    IsLoggedin() {
+        return this.userService.loggedIn();
     }
 }

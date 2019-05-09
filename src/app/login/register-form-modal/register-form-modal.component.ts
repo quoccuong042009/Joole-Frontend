@@ -1,16 +1,16 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { AuthService } from './../../service/user/auth.service';
+import { UserService } from './../../service/user/user.service';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IMAGE_PREFIX } from './../../app.constant';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'app-register-form-modal',
   templateUrl: './register-form-modal.component.html',
   styleUrls: ['./register-form-modal.component.css']
 })
 export class RegisterFormModalComponent implements OnInit {
-    IMAGE_PREFIX = './assets/Images/Users/';
-
     public imagePath;
     imgURL: any = './assets/Images/Users/holder.png';
     public message: string;
@@ -20,12 +20,14 @@ export class RegisterFormModalComponent implements OnInit {
     invalidImage: boolean;
     invalidUsername: boolean;
     invalidEmail: boolean;
-    existedEmail: boolean;
+    existedUsername: boolean;
     invalidPassword: boolean;
     invalidRepeatPassword: boolean;
 
     constructor(
-        public modal: NgbActiveModal
+        public modal: NgbActiveModal,
+        private userService: UserService,
+        private authService: AuthService
     ) {}
 
     ngOnInit() {
@@ -52,7 +54,6 @@ export class RegisterFormModalComponent implements OnInit {
     }
 
     preview(files) {
-        console.log(files);
         if (files.length === 0) {
             return;
         }
@@ -77,7 +78,7 @@ export class RegisterFormModalComponent implements OnInit {
         this.invalidEmail = false;
         this.invalidPassword = false;
         this.invalidRepeatPassword = false;
-        this.existedEmail = false;
+        this.existedUsername = false;
 
         if (!this.signupForm.valid) {
             if (!this.signupForm.get('image').valid) {
@@ -101,19 +102,20 @@ export class RegisterFormModalComponent implements OnInit {
                 this.invalidRepeatPassword = true;
             }
         } else {
-            const image = this.imgURL;
+            const image = IMAGE_PREFIX + this.imagePath[0].name;
             const username = this.signupForm.get('username').value.toString();
             const email = this.signupForm.get('email').value.toString();
             const password = this.signupForm.get('password').value.toString();
-            console.log(this.imagePath);
-        // this.userService.signup(email,password,firstName,lastName,date)
-        // .subscribe(res => {
-        //   if(res.toString() === 'Created'){
-        //     this.route.navigate(['login']);
-        //   } else {
-        //     this.existedEmail = true;
-        //   }
-        // });
+            this.userService.register(username, email, password, image)
+                .subscribe(
+                    response => {
+                        if (response.toString() === 'Created') {
+                            this.authService.logIn(username, password)
+                                .subscribe(token => this.authService.setToken(token));
+                        }
+                    },
+                    error => this.existedUsername = true
+                );
         }
     }
 }

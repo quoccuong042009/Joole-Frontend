@@ -1,5 +1,7 @@
+import { AuthService } from './../service/user/auth.service';
+import { UserService } from './../service/user/user.service';
 import { Component, OnInit } from '@angular/core';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -11,13 +13,27 @@ import { RegisterFormModalComponent } from './register-form-modal/register-form-
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+    loginForm: FormGroup;
+
+    invalidEmail: boolean;
+    invalidPassword: boolean;
+    wrongEmailOrPassword: boolean;
 
     constructor(
         private modalService: NgbModal,
-        private cookieService: CookieService
+        private authService: AuthService
     ) { }
 
     ngOnInit() {
+        this.loginForm = new FormGroup({
+            username: new FormControl('', [
+                Validators.required
+            ]),
+            password: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8)
+            ])
+        });
     }
 
     openFormModal() {
@@ -30,7 +46,37 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    OnLogin() {
-        this.cookieService.set( 'Test', 'Hello World' );
+    onLogin() {
+        console.log('in login click');
+        this.invalidEmail = false;
+        this.invalidPassword = false;
+        this.wrongEmailOrPassword = false;
+        console.log(this.loginForm);
+
+        if (!this.loginForm.valid) {
+            if (!this.loginForm.get('username').valid) {
+                this.invalidEmail = true;
+            }
+            if (!this.loginForm.get('password').valid) {
+                this.invalidPassword = true;
+            }
+        } else {
+            const username = this.loginForm.get('username').value.toString();
+            const password = this.loginForm.get('password').value.toString();
+
+            this.authService.logIn(username, password)
+                .subscribe(
+                    result => {
+                        if (result) {
+                            this.authService.setToken(result);
+                        } else {
+                            this.wrongEmailOrPassword = true;
+                        }
+                    },
+                    error => {
+                        this.wrongEmailOrPassword = true;
+                    }
+                );
+        }
     }
 }

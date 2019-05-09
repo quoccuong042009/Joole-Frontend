@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { NgbModalConfig, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +24,17 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+        config: {
+          tokenGetter: function  tokenGetter() {
+               return   localStorage.getItem('access_token');
+            },
+        //   whitelistedDomains: ['localhost:3000'],
+        //   blacklistedRoutes: ['http://localhost:3000/auth/login']
+        }
+      })
   ],
   entryComponents: [
     RegisterFormModalComponent

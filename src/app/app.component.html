@@ -1,7 +1,7 @@
 <div class = "front-page">
     <div class="login-box">
         <img src="../assets/Images/Logo/logo_transparent.png" alt="logo" id="logo-front-page">
-        <app-login *ngIf="!IsLogin()"></app-login>
-        <app-search-bar *ngIf="IsLogin()"></app-search-bar>
+        <app-login *ngIf="!IsLoggedin()"></app-login>
+        <app-search-bar *ngIf="IsLoggedin()"></app-search-bar>
     </div>
   </div>

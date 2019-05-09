@@ -39,7 +39,9 @@ export class MyInterceptor implements HttpInterceptor {
                 },
                 error => {
                     // logging the http response to browser's console in case of a failuer
+                    // tslint:disable-next-line: deprecation
                     if (event instanceof HttpResponse) {
+                    // tslint:disable-next-line: deprecation
                         console.log('api call error :', event);
                     }
                 }

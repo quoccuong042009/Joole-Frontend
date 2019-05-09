@@ -1,8 +1,8 @@
-import { AuthService } from './../../service/user/auth.service';
-import { UserService } from './../../service/user/user.service';
+import { AuthService } from '../../../service/user/auth.service';
+import { UserService } from '../../../service/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IMAGE_PREFIX } from './../../app.constant';
+import { IMAGE_PREFIX } from '../../../app.constant';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({

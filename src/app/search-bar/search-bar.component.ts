@@ -55,8 +55,7 @@ export class SearchBarComponent implements OnInit {
     }
 
     onSearch() {
-        console.log(this.selectedCategoryId, this.selectedSubCategoryId);
-        // this.router.navigate(['/main', this.selectedCategoryId, this.selectedSubCategoryId]);
+        this.router.navigate(['front-page', this.selectedCategoryId, this.selectedSubCategoryId]);
     }
 
     onLogOut() {
@@ -64,10 +63,6 @@ export class SearchBarComponent implements OnInit {
     }
 
     isDisableSearch() {
-        if (this.selectedCategoryId !== '-1' && this.selectedSubCategoryId !== '-1') {
-            return false;
-        } else {
-            return true;
-        }
+        return !(this.selectedCategoryId !== '-1' && this.selectedSubCategoryId !== '-1');
     }
 }

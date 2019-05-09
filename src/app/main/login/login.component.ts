@@ -1,5 +1,4 @@
-import { AuthService } from './../service/user/auth.service';
-import { UserService } from './../service/user/user.service';
+import { AuthService } from './../../service/user/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

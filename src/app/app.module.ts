@@ -9,12 +9,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterFormModalComponent } from './login/register-form-modal/register-form-modal.component';
+import { RegisterFormModalComponent } from './main/login/register-form-modal/register-form-modal.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './main/login/login.component';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { NavBarComponent } from './front-page/nav-bar/nav-bar.component';
 import { ProductDetailsComponent } from './front-page/product-details/product-details.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { ProductDetailsComponent } from './front-page/product-details/product-de
         LoginComponent,
         FrontPageComponent,
         NavBarComponent,
-        ProductDetailsComponent
+        ProductDetailsComponent,
+        MainComponent
     ],
     imports: [
         BrowserModule,

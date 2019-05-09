@@ -1,1 +1,15 @@
-<app-front-page></app-front-page>
+<div class = "front-page">
+    <div class="login-box">
+        <img src="../assets/Images/Logo/logo_transparent.png" alt="logo" id="logo-front-page">
+        <form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-success">Log In</button>
+            <button class="btn btn-default" (click)="openFormModal()">Register</button>
+        </form>
+    </div>
+  </div>

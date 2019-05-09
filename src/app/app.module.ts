@@ -5,13 +5,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FrontPageComponent } from './front-page/front-page.component';
 import { RegisterFormModalComponent } from './register-form-modal/register-form-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FrontPageComponent,
     RegisterFormModalComponent
   ],
   imports: [

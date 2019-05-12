@@ -1,0 +1,17 @@
+.search-bar {
+    width: 700px;
+}
+
+.color {
+    background: linear-gradient(to bottom, #71bbdd 2%,#e4f5fc 65%);
+}
+
+img {
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.brand {
+    letter-spacing: 5px;
+    font-size: 35px;
+}

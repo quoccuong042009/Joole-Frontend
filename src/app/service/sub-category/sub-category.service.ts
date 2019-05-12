@@ -7,13 +7,10 @@ import { SubCategory } from 'src/app/model/SubCategory';
   providedIn: 'root'
 })
 export class SubCategoryService {
+  constructor(private httpClient: HttpClient) {}
 
-    constructor(
-        private httpClient: HttpClient
-    ) { }
-
-    getSubCategoriesByCategoryId(id) {
-        const url = `${SUBCATEGORY_URL}/${'category'}/` + id;
-        return this.httpClient.get<SubCategory[]>(url);
-    }
+  getSubCategoriesByCategoryId(id) {
+    const url = `${SUBCATEGORY_URL}/${'category'}/` + id;
+    return this.httpClient.get<SubCategory[]>(url);
+  }
 }

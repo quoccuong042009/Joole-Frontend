@@ -6,34 +6,41 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class AuthService {
-    constructor(
-        private cookieService: CookieService,
-        private jwtHelperService: JwtHelperService,
-        private httpClient: HttpClient) { }
+  constructor(
+    private cookieService: CookieService,
+    private jwtHelperService: JwtHelperService,
+    private httpClient: HttpClient
+  ) {}
 
-    setToken(token) {
-        this.cookieService.set(TOKEN_NAME, token);
-    }
+  setToken(token) {
+    this.cookieService.set(TOKEN_NAME, token);
+  }
 
-    getToken(): string {
-        return this.cookieService.get(TOKEN_NAME);
-    }
+  getToken(): string {
+    return this.cookieService.get(TOKEN_NAME);
+  }
 
-    isAuthenticated(): boolean {
-        return !this.jwtHelperService.isTokenExpired(this.getToken());
-    }
+  getUsername() {
+    return this.jwtHelperService.decodeToken(this.getToken()).unique_name;
+  }
 
-    logIn(username, password) {
-        const url = `${USER_URL}/${'login'}`;
-        const body = `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/x-www-form-urlencoded'
-            })
-        };
-        return this.httpClient.post(url, body, httpOptions);
-    }
+  isAuthenticated(): boolean {
+    return !this.jwtHelperService.isTokenExpired(this.getToken());
+  }
+
+  logIn(username, password) {
+    const url = `${USER_URL}/${'login'}`;
+    const body = `username=${encodeURIComponent(
+      username
+    )}&password=${encodeURIComponent(password)}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    return this.httpClient.post(url, body, httpOptions);
+  }
 }

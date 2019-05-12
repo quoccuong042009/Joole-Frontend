@@ -1,74 +1,60 @@
-<form [formGroup] = "signupForm" (ngSubmit) = "onSignup()">
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-title">Register as User</h4>
-        <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Register as User</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="input-group  mb-3">
+      <img [src]="imgURL" *ngIf="imgURL">
     </div>
-    <div class="modal-body">
-        <div class="input-group  mb-3">
-            <img [src]="imgURL" *ngIf="imgURL" >
-        </div>
-        <div class="input-group mb-3">
-            <label>Username</label>
-            <input type="text"
-                name = "username"
-                placeholder="Enter Username"
-                formControlName= "username"
-                class="form-control">
-        </div>
-        <span style="color:red" *ngIf = "invalidUsername">
-                Invalid Username. 
-            </span>
-        <div class="input-group mb-3">
-            <label>Email</label>
-            <input type="text"
-                name = "email"
-                placeholder="Enter Email"
-                formControlName= "email"
-                class="form-control">
-        </div>
-        <span style="color:red" *ngIf = "invalidUsername">
-                Invalid email. 
-        </span>
-        <div class="input-group mb-3">
-            <label>Password</label>
-            <input type="password"
-                name = "password"
-                placeholder = "Enter Password"
-                formControlName= "password"
-                class="form-control">
-        </div>
-        <span style="color:red" *ngIf = "invalidPassword">
-                Password must be at least 8 characters.
-            </span>
-        <div class="input-group mb-3">
-            <label>Confirm Password</label>
-            <input type="password"
-                name = "rpassword"
-                placeholder="Repeat Password"
-                formControlName= "rpassword"
-                class="form-control">
-        </div>
-        <span style="color:red" *ngIf = "invalidRepeatPassword">
-            Password and repeat password do not match.
-        </span>
+    <div class="input-group mb-3">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Enter Username" formControlName="username" class="form-control">
+    </div>
+    <span style="color:red" *ngIf="invalidUsername">
+      Invalid Username.
+    </span>
+    <div class="input-group mb-3">
+      <label>Email</label>
+      <input type="text" name="email" placeholder="Enter Email" formControlName="email" class="form-control">
+    </div>
+    <span style="color:red" *ngIf="invalidUsername">
+      Invalid email.
+    </span>
+    <div class="input-group mb-3">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Enter Password" formControlName="password"
+        class="form-control">
+    </div>
+    <span style="color:red" *ngIf="invalidPassword">
+      Password must be at least 8 characters.
+    </span>
+    <div class="input-group mb-3">
+      <label>Confirm Password</label>
+      <input type="password" name="rpassword" placeholder="Repeat Password" formControlName="rpassword"
+        class="form-control">
+    </div>
+    <span style="color:red" *ngIf="invalidRepeatPassword">
+      Password and repeat password do not match.
+    </span>
 
-        <div class="input-group mb-3">
-            <label>Profile Picture</label><br>
-            <input #file type="file" accept='image/*' formControlName="image" (change)="preview(file.files)" />
-            
-            <span style="color:red" *ngIf = "invalidImage">
-                Invalid image path.
-            </span><br />
-        </div>
-        <span style="color:red" *ngIf = "existedUsername">
-                Your username is already existed. 
-        </span><br />
+    <div class="input-group mb-3">
+      <label>Profile Picture</label><br>
+      <input #file type="file" accept='image/*' formControlName="image" (change)="preview(file.files)" />
+
+      <span style="color:red" *ngIf="invalidImage">
+        Invalid image path.
+      </span><br />
     </div>
-    <div class="modal-footer">
-        
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
-    </div>
+    <span style="color:red" *ngIf="existedUsername">
+      Your username is already existed.
+    </span><br />
+  </div>
+  <div class="modal-footer">
+
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+  </div>
 </form>

@@ -7,13 +7,10 @@ import { CATEGORY_URL } from './../../app.constant';
   providedIn: 'root'
 })
 export class CategoryService {
+  constructor(private httpClient: HttpClient) {}
 
-    constructor(
-        private httpClient: HttpClient
-    ) { }
-
-    getCategories() {
-        const url = `${CATEGORY_URL}`;
-        return this.httpClient.get<Category[]>(url);
-    }
+  getCategories() {
+    const url = `${CATEGORY_URL}`;
+    return this.httpClient.get<Category[]>(url);
+  }
 }

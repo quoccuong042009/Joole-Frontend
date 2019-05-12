@@ -4,3 +4,6 @@ export const TOKEN_NAME = 'access_token';
 export const USER_URL = API_URL + '/users';
 export const CATEGORY_URL = API_URL + '/categories';
 export const SUBCATEGORY_URL = API_URL + '/subcategories';
+export const TECHPROP_URL = API_URL + '/techprop';
+export const TYPEPROP_URL = API_URL + '/typeprop';
+export const FILTER_URL = API_URL + '/filter';

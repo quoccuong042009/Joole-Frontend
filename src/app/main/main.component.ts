@@ -7,14 +7,11 @@ import { UserService } from '../service/user/user.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  constructor(private userService: UserService) {}
 
-    constructor(
-        private userService: UserService) { }
+  ngOnInit() {}
 
-    ngOnInit() {
-    }
-
-    IsLoggedin() {
-        return this.userService.loggedIn();
-    }
+  IsLoggedin() {
+    return this.userService.loggedIn();
+  }
 }

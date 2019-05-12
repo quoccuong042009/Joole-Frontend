@@ -8,61 +8,60 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
 
-
 @Component({
-    selector: 'app-search-bar',
-    templateUrl: './search-bar.component.html',
-    styleUrls: ['./search-bar.component.css']
+  selector: 'app-search-bar',
+  templateUrl: './search-bar.component.html',
+  styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-    categories: Category[];
-    subCategories: SubCategory[];
-    selectedCategoryId = '-1';
-    selectedSubCategoryId = '-1';
+  categories: Category[];
+  subCategories: SubCategory[];
+  selectedCategoryId = '-1';
+  selectedSubCategoryId = '-1';
 
-    isDisable = true;
+  isDisable = true;
 
-    constructor(
-        private userService: UserService,
-        private categoryService: CategoryService,
-        private subCategoryService: SubCategoryService,
-        private router: Router
-        ) { }
+  constructor(
+    private userService: UserService,
+    private categoryService: CategoryService,
+    private subCategoryService: SubCategoryService,
+    private router: Router
+  ) {}
 
-    ngOnInit() {
-        if (this.userService.loggedIn()) {
-            this.getCategories();
-        }
+  ngOnInit() {
+    if (this.userService.loggedIn()) {
+      this.getCategories();
     }
+  }
 
-    getCategories() {
-        this.categoryService.getCategories()
-            .subscribe(
-                response => this.categories = response
-            );
-    }
+  getCategories() {
+    this.categoryService
+      .getCategories()
+      .subscribe(response => (this.categories = response));
+  }
 
-    onCategoryChange(id) {
-        this.selectedCategoryId = id;
-        this.subCategoryService.getSubCategoriesByCategoryId(id)
-            .subscribe(
-                response => this.subCategories = response
-            );
-    }
+  onCategoryChange(id) {
+    this.selectedCategoryId = id;
+    this.subCategoryService
+      .getSubCategoriesByCategoryId(id)
+      .subscribe(response => (this.subCategories = response));
+  }
 
-    onSubCategoryChange(id) {
-        this.selectedSubCategoryId = id;
-    }
+  onSubCategoryChange(id) {
+    this.selectedSubCategoryId = id;
+  }
 
-    onSearch() {
-        this.router.navigate(['front-page', this.selectedCategoryId, this.selectedSubCategoryId]);
-    }
+  onSearch() {
+    this.router.navigate([
+      'front-page',
+      this.selectedCategoryId,
+      this.selectedSubCategoryId
+    ]);
+  }
 
-    onLogOut() {
-        this.userService.logOut();
-    }
-
-    isDisableSearch() {
-        return !(this.selectedCategoryId !== '-1' && this.selectedSubCategoryId !== '-1');
-    }
+  isDisableSearch() {
+    return !(
+      this.selectedCategoryId !== '-1' && this.selectedSubCategoryId !== '-1'
+    );
+  }
 }

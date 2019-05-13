@@ -7,3 +7,5 @@ export const SUBCATEGORY_URL = API_URL + '/subcategories';
 export const TECHPROP_URL = API_URL + '/techprop';
 export const TYPEPROP_URL = API_URL + '/typeprop';
 export const FILTER_URL = API_URL + '/filter';
+export const PRODUCT_URL = API_URL + '/product';
+export const MANUFACTURER_URL = API_URL + '/manufacturer';

@@ -11,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Ng5SliderModule } from 'ng5-slider';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,8 +22,9 @@ import { FrontPageComponent } from './front-page/front-page.component';
 import { NavBarComponent } from './front-page/nav-bar/nav-bar.component';
 import { ProductDetailsComponent } from './front-page/product-details/product-details.component';
 import { MainComponent } from './main/main.component';
-import { ProductsComponent } from './front-page/products/products.component';
-import { FilterModalComponent } from './front-page/filter-modal/filter-modal.component';
+import { ProductsComponent } from './front-page/front-page-body/products/products.component';
+import { FilterModalComponent } from './front-page/front-page-body/filter-modal/filter-modal.component';
+import { FrontPageBodyComponent } from './front-page/front-page-body/front-page-body.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { FilterModalComponent } from './front-page/filter-modal/filter-modal.com
     ProductDetailsComponent,
     MainComponent,
     ProductsComponent,
-    FilterModalComponent
+    FilterModalComponent,
+    FrontPageBodyComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { FilterModalComponent } from './front-page/filter-modal/filter-modal.com
     FormsModule,
     HttpClientModule,
     Ng5SliderModule,
+    NgxPaginationModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: function tokenGetter() {

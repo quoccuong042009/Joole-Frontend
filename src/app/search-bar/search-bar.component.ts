@@ -53,7 +53,7 @@ export class SearchBarComponent implements OnInit {
 
   onSearch() {
     this.router.navigate([
-      'front-page',
+      'front-page/products',
       this.selectedCategoryId,
       this.selectedSubCategoryId
     ]);

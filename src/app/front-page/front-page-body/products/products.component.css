@@ -1,0 +1,65 @@
+img {
+  width: 250px;
+  height: 250px;
+}
+
+.page {
+  bottom: 15px;
+  padding-left: 600px;
+}
+
+#album-list {
+  height: 675px;
+}
+
+p em {
+  color: #9b9993;
+}
+
+ul {
+  list-style-type: square;
+  margin-left: 50px;
+  font-size: 20px;
+}
+
+ul#album-list {
+  list-style: none;
+  margin-left: 10px;
+}
+
+ul#album-list li {
+  width: 260px;
+  float: left;
+  margin: 30px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+ul#album-list li a,
+ul#album-list li .button {
+  font-size: 15px;
+  float: left;
+}
+
+ul#album-list li a span {
+  color: #9b9993;
+  text-decoration: underline;
+}
+
+a {
+  border-bottom: 1px solid black;
+}
+
+.intro {
+  font-size: 15px;
+}
+
+.tech {
+  font-size: 15px;
+  background-color: #9b9993;
+}
+
+button {
+  float: right;
+  margin: 10px;
+}

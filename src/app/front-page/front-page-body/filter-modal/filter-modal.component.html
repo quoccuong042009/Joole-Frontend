@@ -25,9 +25,9 @@
   </div>
   <div class="content">
     <div *ngFor="let options of ListOptions; let i = index">
-      <label class="tech">{{ filterSendDto.TechPropsMinMaxValueDtos[i].Name }}</label>
-      <ng5-slider [(value)]="filterSendDto.TechPropsMinMaxValueDtos[i].MinValue"
-        [(highValue)]="filterSendDto.TechPropsMinMaxValueDtos[i].MaxValue" [options]="options">
+      <label class="tech">{{ filterDto.TechPropsMinMaxValueDtos[i].Name }}</label>
+      <ng5-slider [(value)]="filterDto.TechPropsMinMaxValueDtos[i].MinValue"
+        [(highValue)]="filterDto.TechPropsMinMaxValueDtos[i].MaxValue" [options]="options">
       </ng5-slider>
     </div>
   </div>
@@ -40,7 +40,7 @@
     <label>test</label>
     <select class="custom-select" style="width:200px;" [(ngModel)]="selectedManufacturer">
       <option value="-1">All</option>
-      <option *ngFor="let manufacturer of filterSendDto?.Manufacturers" [value]="manufacturer.Id">
+      <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.Id">
         {{ manufacturer.Name }}
       </option>
     </select>
@@ -49,5 +49,6 @@
 </div>
 <div class="modal-footer">
   <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
-  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+  <button id="close" type="button" class="btn btn-outline-secondary"
+    (click)="modal.dismiss('cancel click')">Cancel</button>
 </div>

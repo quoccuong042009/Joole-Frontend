@@ -1,0 +1,27 @@
+<div>
+  <ul id="album-list">
+    <li *ngFor="let p of productDtos| paginate: { itemsPerPage: 3, currentPage: p }; let i=index">
+      <a href="url" [routerLink]="['/product-details', p.Product.Id]">
+        <img src={{p.Product.Image}} />
+      </a>
+      <div class="intro">
+        <span>{{ p.Product.Manufacturer.Name }}</span> <br>
+        <span>{{ p.Product.Series.Name }}</span> <br>
+        <span>{{ p.Product.Model }}</span>
+      </div>
+      <div class="tech" *ngFor="let t of p.TechProps | slice:0:4; let i=index">
+        <span>
+          {{ t.Name }}: {{ t.MaxValue }}
+        </span> <br>
+      </div>
+      <div>
+        <input type="checkbox">
+        Compare
+        <button type="submit" class="btn btn-primary" disabled>Add Project</button>
+      </div>
+    </li>
+  </ul>
+  <div class="page">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+import { FrontPageBodyComponent } from './front-page/front-page-body/front-page-body.component';
+import { ProductDetailsComponent } from './front-page/product-details/product-details.component';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,8 +12,18 @@ const routes: Routes = [
     component: MainComponent
   },
   {
-    path: 'front-page/:categoryId/:subCategoryId',
-    component: FrontPageComponent
+    path: 'front-page',
+    component: FrontPageComponent,
+    children: [
+      {
+        path: 'products/:categoryId/:subCategoryId',
+        component: FrontPageBodyComponent
+      },
+      {
+        path: 'product-details/:productId',
+        component: ProductDetailsComponent
+      }
+    ]
   },
   {
     path: '',

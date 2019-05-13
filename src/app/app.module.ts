@@ -22,6 +22,7 @@ import { NavBarComponent } from './front-page/nav-bar/nav-bar.component';
 import { ProductDetailsComponent } from './front-page/product-details/product-details.component';
 import { MainComponent } from './main/main.component';
 import { ProductsComponent } from './front-page/products/products.component';
+import { FilterModalComponent } from './front-page/filter-modal/filter-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProductsComponent } from './front-page/products/products.component';
     NavBarComponent,
     ProductDetailsComponent,
     MainComponent,
-    ProductsComponent
+    ProductsComponent,
+    FilterModalComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import { ProductsComponent } from './front-page/products/products.component';
       }
     })
   ],
-  entryComponents: [RegisterFormModalComponent],
+  entryComponents: [RegisterFormModalComponent, FilterModalComponent],
   providers: [
     NgbModalConfig,
     NgbModal,

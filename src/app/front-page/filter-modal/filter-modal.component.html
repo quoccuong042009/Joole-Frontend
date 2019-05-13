@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <h4 class="modal-title">Filter</h4>
+  <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="section">
+    <strong>Type</strong>
+  </div>
+  <div class="content">
+    <div *ngFor="let t of typePropsListValuesDtosWithoutYear; let i=index">
+      <label>{{ t.Name }}</label>
+      <div class="form-check-inline" *ngFor="let s of t.ListValues">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" [name]="t.Name" [value]="s"
+            [(ngModel)]="selectedTypeValue[i]">{{ s }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <strong>Technical Details</strong>
+  </div>
+  <div class="content">
+    <div *ngFor="let options of ListOptions; let i = index">
+      <label class="tech">{{ filterSendDto.TechPropsMinMaxValueDtos[i].Name }}</label>
+      <ng5-slider [(value)]="filterSendDto.TechPropsMinMaxValueDtos[i].MinValue"
+        [(highValue)]="filterSendDto.TechPropsMinMaxValueDtos[i].MaxValue" [options]="options">
+      </ng5-slider>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <strong>Manufacturers</strong>
+  </div>
+  <div class="content">
+    <label>test</label>
+    <select class="custom-select" style="width:200px;" [(ngModel)]="selectedManufacturer">
+      <option value="-1">All</option>
+      <option *ngFor="let manufacturer of filterSendDto?.Manufacturers" [value]="manufacturer.Id">
+        {{ manufacturer.Name }}
+      </option>
+    </select>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
+  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+</div>

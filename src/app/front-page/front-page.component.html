@@ -2,12 +2,17 @@
 <div id="product-filter">
   <div id="search-div">
     <span>Search: </span>
-    <button type="submit" class="btn btn-secondary">Save</button>
-    <button type="button" class="btn btn-danger">Clear</button>
-    <button type="button" class="btn btn-info">More</button>
+    <button type="submit" class="btn btn-secondary" (click)="onSave()">
+      Save
+    </button>
+    <button type="button" class="btn btn-danger" (click)="onClear()">
+      Clear
+    </button>
+    <button type="button" class="btn btn-info" (click)="onMore()">
+      More
+    </button>
   </div>
   <div id="accordion">
-
     <div class="card">
       <div class="card-header">
         <a class="card-link" data-toggle="collapse" href="#collapseOne">
@@ -21,14 +26,13 @@
               <label><strong> Model Year:</strong></label>
             </div>
             <div class="col">
-              <input type="number" class="form-control">
+              <input type="number" class="form-control" [(ngModel)]="minYear" />
             </div>
             __
             <div class="col">
-              <input type="number" class="form-control">
+              <input type="number" class="form-control" [(ngModel)]="maxYear" />
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -41,14 +45,12 @@
       </div>
       <div id="collapseTwo" class="collapse">
         <div class="card-body test">
-
           <div class="custom-slider" *ngFor="let options of listOptions; let i = index">
             {{ filterSendDto.TechPropsMinMaxValueDtos[i].Name }}
-            <ng5-slider [(value)]="filterSendDto.TechPropsMinMaxValueDtos[i].MinvValue"
+            <ng5-slider [(value)]="filterSendDto.TechPropsMinMaxValueDtos[i].MinValue"
               [(highValue)]="filterSendDto.TechPropsMinMaxValueDtos[i].MaxValue" [options]="options">
             </ng5-slider>
           </div>
-
         </div>
       </div>
     </div>
@@ -68,8 +70,8 @@
             <div class="col">
               <select name="manufacturer" [(ngModel)]="selectedManufacturer">
                 <option value="-1">All</option>
-                <option *ngFor="let manufacturer of filterSendDto.Manufacturers" [value]="manufacturer.Id">
-                  {{manufacturer.Name}}
+                <option *ngFor="let manufacturer of filterSendDto?.Manufacturers" [value]="manufacturer.Id">
+                  {{ manufacturer.Name }}
                 </option>
               </select>
             </div>
@@ -77,6 +79,5 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>

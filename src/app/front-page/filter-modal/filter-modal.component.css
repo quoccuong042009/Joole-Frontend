@@ -1,0 +1,25 @@
+.section {
+  background-color: rgb(209, 205, 205);
+  padding-left: 10px;
+}
+
+.content {
+  margin: 0 10px;
+}
+
+label {
+  display: inline-block;
+  width: 170px;
+}
+
+.tech {
+  margin-bottom: 0px;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.custom-select {
+  margin: 10px 0;
+}

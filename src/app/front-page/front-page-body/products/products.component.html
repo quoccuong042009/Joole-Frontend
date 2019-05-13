@@ -1,7 +1,7 @@
 <div>
   <ul id="album-list">
     <li *ngFor="let p of productDtos| paginate: { itemsPerPage: 3, currentPage: p }; let i=index">
-      <a href="url" [routerLink]="['/product-details', p.Product.Id]">
+      <a href="url" [routerLink]="['/front-page/product-details', p.Product.Id]" routerLinkActive="active">
         <img src={{p.Product.Image}} />
       </a>
       <div class="intro">

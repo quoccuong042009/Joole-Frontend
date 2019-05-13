@@ -1,3 +1,4 @@
+import { ProductDetailsComponent } from './front-page/product/product-details/product-details.component';
 import { MyInterceptor } from './auth/token.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -20,11 +21,14 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { LoginComponent } from './main/login/login.component';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { NavBarComponent } from './front-page/nav-bar/nav-bar.component';
-import { ProductDetailsComponent } from './front-page/product-details/product-details.component';
 import { MainComponent } from './main/main.component';
 import { ProductsComponent } from './front-page/front-page-body/products/products.component';
 import { FilterModalComponent } from './front-page/front-page-body/filter-modal/filter-modal.component';
 import { FrontPageBodyComponent } from './front-page/front-page-body/front-page-body.component';
+import { ProductComponent } from './front-page/product/product.component';
+import { ProductSummaryComponent } from './front-page/product/product-summary/product-summary.component';
+import { ProductDocumentationComponent } from './front-page/product/product-documentation/product-documentation.component';
+import { ProductContactComponent } from './front-page/product/product-contact/product-contact.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +38,15 @@ import { FrontPageBodyComponent } from './front-page/front-page-body/front-page-
     LoginComponent,
     FrontPageComponent,
     NavBarComponent,
-    ProductDetailsComponent,
     MainComponent,
     ProductsComponent,
     FilterModalComponent,
-    FrontPageBodyComponent
+    FrontPageBodyComponent,
+    ProductComponent,
+    ProductSummaryComponent,
+    ProductDocumentationComponent,
+    ProductContactComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
+import { ProductDto } from './../../model/ProductDto';
 import { ManufacturerService } from './../../service/manufacturer/manufacturer.service';
 import { Manufacturer } from './../../model/Manufacturer';
-import { Product } from './../../model/Product';
-import { ProductDto } from '../../model/ProductDto';
+
 import { ProductService } from './../../service/product/product.service';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

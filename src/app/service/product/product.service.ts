@@ -9,6 +9,11 @@ import { ProductDto } from 'src/app/model/ProductDto';
 export class ProductService {
   constructor(private httpClient: HttpClient) {}
 
+  getProductDtoWithProductId(id) {
+    const url = `${PRODUCT_URL}/${'productDto'}/` + id;
+    return this.httpClient.get<ProductDto>(url);
+  }
+
   getProductDtosWithSubCategoryid(id) {
     const url = `${PRODUCT_URL}/${'productDto'}/${'subcategory'}/` + id;
     return this.httpClient.get<ProductDto[]>(url);

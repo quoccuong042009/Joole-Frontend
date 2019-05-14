@@ -4,9 +4,7 @@ import { SubCategoryService } from './../service/sub-category/sub-category.servi
 import { CategoryService } from './../service/category/category.service';
 import { UserService } from './../service/user/user.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',

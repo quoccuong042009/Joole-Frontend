@@ -1,0 +1,8 @@
+.head {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.title {
+  background-color: rgb(207, 205, 205);
+}

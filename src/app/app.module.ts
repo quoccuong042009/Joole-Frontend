@@ -29,6 +29,7 @@ import { ProductComponent } from './front-page/product/product.component';
 import { ProductSummaryComponent } from './front-page/product/product-summary/product-summary.component';
 import { ProductDocumentationComponent } from './front-page/product/product-documentation/product-documentation.component';
 import { ProductContactComponent } from './front-page/product/product-contact/product-contact.component';
+import { CompareProductsComponent } from './front-page/compare-products/compare-products.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ProductContactComponent } from './front-page/product/product-contact/pr
     ProductSummaryComponent,
     ProductDocumentationComponent,
     ProductContactComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CompareProductsComponent
   ],
   imports: [
     BrowserModule,

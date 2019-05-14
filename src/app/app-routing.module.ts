@@ -1,3 +1,5 @@
+import { AuthGuard } from './guard/auth.guard';
+import { CompareProductsComponent } from './front-page/compare-products/compare-products.component';
 import { ProductComponent } from './front-page/product/product.component';
 import { FrontPageBodyComponent } from './front-page/front-page-body/front-page-body.component';
 import { FrontPageComponent } from './front-page/front-page.component';
@@ -26,17 +28,35 @@ const routes: Routes = [
         path: 'product-details/:productId',
         component: ProductComponent,
         children: [
-          { path: '', redirectTo: 'product-summary', pathMatch: 'full' },
-          { path: 'product-summary', component: ProductSummaryComponent },
-          { path: 'product-details', component: ProductDetailsComponent },
+          {
+            path: '',
+            redirectTo: 'product-summary',
+            pathMatch: 'full'
+          },
+          {
+            path: 'product-summary',
+            component: ProductSummaryComponent
+          },
+          {
+            path: 'product-details',
+            component: ProductDetailsComponent
+          },
           {
             path: 'product-documentation',
             component: ProductDocumentationComponent
           },
-          { path: 'product-contact', component: ProductContactComponent }
+          {
+            path: 'product-contact',
+            component: ProductContactComponent
+          }
         ]
+      },
+      {
+        path: 'products-compare',
+        component: CompareProductsComponent
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
   {
     path: '',

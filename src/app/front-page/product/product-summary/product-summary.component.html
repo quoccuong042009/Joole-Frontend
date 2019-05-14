@@ -1,3 +1,53 @@
-<p>
-  product-summary works!
-</p>
+<div class="container">
+  <h2>Product Summary</h2>
+  <div class="row">
+    <div class="col">
+      <div class="row head">
+        DESCRIPTION
+      </div>
+      <div class="row">
+        <div class="col title">Manufacturer</div>
+        <div class="col">{{ productDto?.Product.Manufacturer.Name }}</div>
+      </div>
+      <div class="row">
+        <div class="col title">Series</div>
+        <div class="col">{{ productDto?.Product.Series.Name }}</div>
+      </div>
+      <div class="row">
+        <div class="col title">Model</div>
+        <div class="col">{{ productDto?.Product.Model }}</div>
+      </div>
+      <div class="row head">
+        TYPE
+      </div>
+      <div class="row" *ngFor="let type of productDto?.TypeProps">
+        <div class="col title">{{type.Name}}</div>
+        <div class="col">{{type.StringValues}}</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row head">
+        TECHNICAL DESCRIPTIONS
+      </div>
+
+      <div class="row" *ngFor="let tech of productDto?.TechProps">
+        <ng-container *ngIf="tech.MinValue === tech.MaxValue">
+          <div class="col title">{{ tech.Name }}</div>
+          <div class="col">{{ tech.MinValue }}</div>
+        </ng-container>
+        <ng-container *ngIf="tech.MinValue !== tech.MaxValue">
+          <div class="col title">
+            {{ tech.Name }}
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col title">Min</div>
+              <div class="col">{{ tech.MinValue }}</div>
+              <div class="col title">Max</div>
+              <div class="col">{{ tech.MaxValue }}</div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>

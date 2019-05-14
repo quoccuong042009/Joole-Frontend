@@ -82,10 +82,7 @@ export class FrontPageBodyComponent implements OnInit {
   getProductDtos(id) {
     this.productService
       .getProductDtosWithSubCategoryid(id)
-      .subscribe(response => {
-        this.productDtos = response;
-        console.log(this.productDtos);
-      });
+      .subscribe(response => (this.productDtos = response));
   }
 
   onSave() {

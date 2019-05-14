@@ -1,0 +1,66 @@
+<div class="url">
+  <span>{{productDtos[0]?.Product.SubCategory.Category.Name}} > </span>
+  <a [routerLink]="['/front-page/products', productDtos[0]?.Product.SubCategory.CategoryId, productDtos[0]?.Product.SubCategory.Id]"
+    routerLinkActive="active"><span>{{productDtos[0]?.Product.SubCategory.Name}}</span> </a>
+  <span> > </span>
+  <span style="color: rgb(145, 142, 142)">Compare</span>
+</div>
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col" *ngFor="let productDto of productDtos">
+          <img src={{productDto.Product.Image}}>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-secondary">
+        <th scope="row">DESCRIPTION</th>
+      </tr>
+      <tr>
+        <th scope="row title">Manufacturer</th>
+        <td *ngFor="let productDto of productDtos">{{productDto.Product.Manufacturer.Name}}</td>
+      </tr>
+      <tr>
+        <th scope="row title">Series</th>
+        <td *ngFor="let productDto of productDtos">{{productDto.Product.Series.Name}}</td>
+      </tr>
+      <tr>
+        <th scope="row title">Model</th>
+        <td *ngFor="let productDto of productDtos">{{productDto.Product.Model}}</td>
+      </tr>
+      <tr class="table-secondary">
+        <th scope="row">TYPE</th>
+      </tr>
+      <tr *ngFor="let type of productDtos[0].TypeProps; let i = index">
+        <th scope="row title">{{type.Name}}</th>
+        <td *ngFor="let productDto of productDtos">
+          {{productDto.TypeProps[i].StringValues}}
+        </td>
+      </tr>
+      <tr class="table-secondary">
+        <th scope="row">TECHNICAL SPECIFICATION</th>
+      </tr>
+      <tr *ngFor="let tech of productDtos[0].TechProps; let i = index">
+        <th scope="row title">{{tech.Name}}</th>
+        <td *ngFor="let productDto of productDtos">
+          <ng-container *ngIf="productDto.TechProps[i].MinValue === productDto.TechProps[i].MaxValue">
+            {{productDto.TechProps[i].MinValue}}
+          </ng-container>
+          <ng-container *ngIf="productDto.TechProps[i].MinValue !== productDto.TechProps[i].MaxValue">
+            <div class="row">
+              <div class="col table-secondary">Min</div>
+              <div class="col">{{productDto.TechProps[i].MinValue}}</div>
+              <div class="col table-secondary">Max</div>
+              <div class="col">{{productDto.TechProps[i].MaxValue}}</div>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a [routerLink]="['/front-page/products', productDtos[0]?.Product.SubCategory.CategoryId, productDtos[0]?.Product.SubCategory.Id]"
+    routerLinkActive="active" class="btn btn-primary" style="float: right">Back</a>
+</div>

@@ -1,3 +1,47 @@
-<p>
-  product-contact works!
-</p>
+<div class="container">
+  <h2>Product Contact</h2>
+  <div class="row">
+    <div class="col">
+      <div class="row head">
+        SALE REPRESENTATIVE
+      </div>
+      <div class="row">
+        <div class="col title">Name</div>
+        <div class="col">{{ productDto?.Product.Sale.Name }}</div>
+      </div>
+      <div class="row">
+        <div class="col title">Phone</div>
+        <div class="col">{{ productDto?.Product.Sale.Phone }}</div>
+      </div>
+      <div class="row">
+        <div class="col title">Email</div>
+        <div class="col">{{ productDto?.Product.Sale.Email }}</div>
+      </div>
+      <div class="row">
+        <div class="col title">Website</div>
+        <div class="col"><a href="">{{ productDto?.Product.Sale.Website }}</a></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row head">
+        MANUFACTURER
+      </div>
+      <div class="row">
+        <div class="col title">Name</div>
+        <div class="col">{{ productDto?.Product.Manufacturer.Department.Name }}</div>
+      </div>
+      <div class="row">
+        <div class="col title">Phone</div>
+        <div class="col">{{ productDto?.Product.Manufacturer.Department.Phone }}</div>
+      </div>
+      <div class="row">
+        <div class="col title">Email</div>
+        <div class="col">{{ productDto?.Product.Manufacturer.Department.Email }}</div>
+      </div>
+      <div class="row">
+        <div class="col title">Website</div>
+        <div class="col"><a href="">{{ productDto?.Product.Manufacturer.Department.Website }}</a></div>
+      </div>
+    </div>
+  </div>
+</div>

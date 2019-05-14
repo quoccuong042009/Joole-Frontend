@@ -1,3 +1,16 @@
-<p>
-  product-details works!
-</p>
+<div class="container">
+  <h2>Product Details</h2>
+
+  <div class="row head">
+    Series Information
+  </div>
+  <ng-container *ngFor="let sery of series; let i=index">
+    <div class="row" *ngIf="i%2==0">
+      {{sery}}
+    </div>
+    <div class="row" style="background-color: rgb(212, 211, 211)" *ngIf="i%2==1">
+      {{sery}}
+    </div>
+  </ng-container>
+
+</div>

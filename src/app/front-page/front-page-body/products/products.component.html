@@ -1,7 +1,13 @@
 <div>
+  <div class="row">
+    <button class="btn btn-primary" (click)="onCompare()">Compare</button><br>
+    <span style="color:red" *ngIf="invalidNumberCompared">
+      Maximum numbers of product to compare is 3. Please try again.
+    </span>
+  </div>
   <ul id="album-list">
     <li *ngFor="let p of productDtos| paginate: { itemsPerPage: 3, currentPage: p }; let i=index">
-      <a href="url" [routerLink]="['/front-page/product-details', p.Product.Id]" routerLinkActive="active">
+      <a [routerLink]="['/front-page/product-details', p.Product.Id]" routerLinkActive="active">
         <img src={{p.Product.Image}} />
       </a>
       <div class="intro">
@@ -15,7 +21,7 @@
         </span> <br>
       </div>
       <div>
-        <input type="checkbox">
+        <input type="checkbox" value="{{p.Product.Id}}" (change)="updateChecked(p.Product.Id, $event)">
         Compare
         <button type="submit" class="btn btn-primary" disabled>Add Project</button>
       </div>

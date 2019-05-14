@@ -33,7 +33,9 @@ export class LoginComponent implements OnInit {
   }
 
   openFormModal() {
-    const modalRef = this.modalService.open(RegisterFormModalComponent);
+    const modalRef = this.modalService.open(RegisterFormModalComponent, {
+      backdrop: 'static'
+    });
 
     modalRef.result
       .then(result => {

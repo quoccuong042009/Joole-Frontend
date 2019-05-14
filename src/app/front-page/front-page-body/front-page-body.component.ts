@@ -18,7 +18,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./front-page-body.component.css']
 })
 export class FrontPageBodyComponent implements OnInit {
-  YEAR_REGEX = '/19[789]d|20[01]d/g';
+  regexYear = new RegExp('^(199[2-9]|200[0-9]|20[0-9][0-9])$', 'i');
+  invalidYears = false;
   productDtos: ProductDto[] = [];
   manufacturers: Manufacturer[] = [];
   NUMBER_TECH_PROP = 5;
@@ -86,29 +87,38 @@ export class FrontPageBodyComponent implements OnInit {
   }
 
   onSave() {
-    this.productDtos = [];
-    // ! Update TypeProp
-    this.filterDto.TypePropsListValuesDtos.find(
-      tp => tp.Name === 'Model Year'
-    ).ListValues[0] = this.minYear.toString();
-    this.filterDto.TypePropsListValuesDtos.find(
-      tp => tp.Name === 'Model Year'
-    ).ListValues[1] = this.maxYear.toString();
+    this.invalidYears = false;
+    if (
+      this.regexYear.test(this.minYear) &&
+      this.regexYear.test(this.maxYear) &&
+      this.minYear <= this.maxYear
+    ) {
+      this.productDtos = [];
+      // ! Update TypeProp
+      this.filterDto.TypePropsListValuesDtos.find(
+        tp => tp.Name === 'Model Year'
+      ).ListValues[0] = this.minYear.toString();
+      this.filterDto.TypePropsListValuesDtos.find(
+        tp => tp.Name === 'Model Year'
+      ).ListValues[1] = this.maxYear.toString();
 
-    // ! Update Manufacturer
-    if (this.selectedManufacturer !== -1) {
-      this.filterDto.Manufacturers = this.manufacturers.filter(
-        m => m.Id.toString() === this.selectedManufacturer.toString()
-      );
+      // ! Update Manufacturer
+      if (this.selectedManufacturer !== -1) {
+        this.filterDto.Manufacturers = this.manufacturers.filter(
+          m => m.Id.toString() === this.selectedManufacturer.toString()
+        );
+      } else {
+        this.filterDto.Manufacturers = this.manufacturers;
+      }
+
+      this.filterService
+        .getProductDtosByFilterDto(this.filterDto)
+        .subscribe(response => {
+          this.productDtos = response;
+        });
     } else {
-      this.filterDto.Manufacturers = this.manufacturers;
+      this.invalidYears = true;
     }
-
-    this.filterService
-      .getProductDtosByFilterDto(this.filterDto)
-      .subscribe(response => {
-        this.productDtos = response;
-      });
   }
 
   onClear() {

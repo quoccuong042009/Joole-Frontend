@@ -103,9 +103,10 @@ export class RegisterFormModalComponent implements OnInit {
       this.userService.register(username, email, password, image).subscribe(
         response => {
           if (response.toString() === 'Created') {
-            this.authService
-              .logIn(username, password)
-              .subscribe(token => this.authService.setToken(token));
+            this.authService.logIn(username, password).subscribe(token => {
+              this.authService.setToken(token);
+              document.getElementById('close').click();
+            });
           }
         },
         error => (this.existedUsername = true)

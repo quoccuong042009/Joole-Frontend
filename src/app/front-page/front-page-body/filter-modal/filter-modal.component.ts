@@ -17,6 +17,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class FilterModalComponent implements OnInit {
   @Input() public subCategoryId;
   @Output() clickevent = new EventEmitter<FilterDto>();
+  regexYear = new RegExp('^(199[2-9]|200[0-9]|20[0-9][0-9])$', 'i');
+  invalidYears = false;
 
   filterDto: FilterDto;
   typePropsListValuesDtosWithoutYear: TypePropsListValuesDto[] = [];
@@ -82,31 +84,40 @@ export class FilterModalComponent implements OnInit {
   }
 
   onSave() {
-    // ! Update TypeProp
-    for (let i = 0; i < this.typePropsListValuesDtosWithoutYear.length; i++) {
-      this.filterDto.TypePropsListValuesDtos[i].ListValues = [
-        this.selectedTypeValue[i]
-      ];
-    }
+    this.invalidYears = false;
+    if (
+      this.regexYear.test(this.minYear) &&
+      this.regexYear.test(this.maxYear) &&
+      this.minYear <= this.maxYear
+    ) {
+      // ! Update TypeProp
+      for (let i = 0; i < this.typePropsListValuesDtosWithoutYear.length; i++) {
+        this.filterDto.TypePropsListValuesDtos[i].ListValues = [
+          this.selectedTypeValue[i]
+        ];
+      }
 
-    this.filterDto.TypePropsListValuesDtos.find(
-      tp => tp.Name === 'Model Year'
-    ).ListValues[0] = this.minYear.toString();
-    this.filterDto.TypePropsListValuesDtos.find(
-      tp => tp.Name === 'Model Year'
-    ).ListValues[1] = this.maxYear.toString();
+      this.filterDto.TypePropsListValuesDtos.find(
+        tp => tp.Name === 'Model Year'
+      ).ListValues[0] = this.minYear.toString();
+      this.filterDto.TypePropsListValuesDtos.find(
+        tp => tp.Name === 'Model Year'
+      ).ListValues[1] = this.maxYear.toString();
 
-    // ! Update Manufacturer
-    if (this.selectedManufacturer !== -1) {
-      this.filterDto.Manufacturers = this.manufacturers.filter(
-        m => m.Id.toString() === this.selectedManufacturer.toString()
-      );
+      // ! Update Manufacturer
+      if (this.selectedManufacturer !== -1) {
+        this.filterDto.Manufacturers = this.manufacturers.filter(
+          m => m.Id.toString() === this.selectedManufacturer.toString()
+        );
+      } else {
+        this.filterDto.Manufacturers = this.manufacturers;
+      }
+
+      console.log(this.filterDto);
+      this.clickevent.emit(this.filterDto);
+      document.getElementById('close').click();
     } else {
-      this.filterDto.Manufacturers = this.manufacturers;
+      this.invalidYears = true;
     }
-
-    console.log(this.filterDto);
-    this.clickevent.emit(this.filterDto);
-    document.getElementById('close').click();
   }
 }

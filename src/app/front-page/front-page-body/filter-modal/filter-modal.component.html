@@ -10,7 +10,7 @@
   </div>
   <div class="content">
     <div *ngFor="let t of typePropsListValuesDtosWithoutYear; let i=index">
-      <label>{{ t.Name }}</label>
+      <label><strong>{{ t.Name }}</strong></label>
       <div class="form-check-inline" *ngFor="let s of t.ListValues">
         <label class="form-check-label">
           <input type="radio" class="form-check-input" [name]="t.Name" [value]="s"
@@ -18,6 +18,19 @@
         </label>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <label><strong> Model Year:</strong></label>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control" [(ngModel)]="minYear" />
+      </div>
+      __
+      <div class="col">
+        <input type="number" class="form-control" [(ngModel)]="maxYear" />
+      </div>
+    </div>
+
   </div>
 
   <div class="section">
@@ -25,7 +38,7 @@
   </div>
   <div class="content">
     <div *ngFor="let options of ListOptions; let i = index">
-      <label class="tech">{{ filterDto.TechPropsMinMaxValueDtos[i].Name }}</label>
+      <label class="tech"><strong>{{ filterDto.TechPropsMinMaxValueDtos[i].Name }}</strong></label>
       <ng5-slider [(value)]="filterDto.TechPropsMinMaxValueDtos[i].MinValue"
         [(highValue)]="filterDto.TechPropsMinMaxValueDtos[i].MaxValue" [options]="options">
       </ng5-slider>
@@ -37,7 +50,7 @@
     <strong>Manufacturers</strong>
   </div>
   <div class="content">
-    <label>test</label>
+    <label>Manufacturer</label>
     <select class="custom-select" style="width:200px;" [(ngModel)]="selectedManufacturer">
       <option value="-1">All</option>
       <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.Id">
@@ -48,6 +61,7 @@
 
 </div>
 <div class="modal-footer">
+  <span *ngIf="invalidYears" style="color:red">Invalid Years. Please try again.</span>
   <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
   <button id="close" type="button" class="btn btn-outline-secondary"
     (click)="modal.dismiss('cancel click')">Cancel</button>

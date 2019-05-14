@@ -32,6 +32,7 @@
               <input type="number" class="form-control" [(ngModel)]="maxYear" />
             </div>
           </div>
+          <span *ngIf="invalidYears" style="color:red">Invalid Years</span>
         </div>
       </div>
     </div>
@@ -80,4 +81,5 @@
     </div>
   </div>
 </div>
+
 <app-products [productDtos]="productDtos"></app-products>

@@ -1,7 +1,8 @@
 <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-title">Register as User</h4>
-    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+    <button type="button" id="close" class="close" aria-describedby="modal-title"
+      (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
